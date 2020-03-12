@@ -1,4 +1,4 @@
-;; custom.el -- Custom module
+;; core-custom.el -- Custom module
 ;;
 ;; Derek Hammitt
 ;; 2020-03-10
@@ -12,9 +12,11 @@
   :prefix "core-"
   :group 'convenience)
 
-(defcustom my-theme 'zenburn
+(defcustom core-theme 'zenburn
   "Default color scheme."
   :type 'symbol
   :group 'core)
 
 (provide 'core-custom)
+
+;; core-custom.el ends here
