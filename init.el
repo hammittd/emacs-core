@@ -32,10 +32,12 @@
 (require 'core-packages)
 (require 'core-custom)
 (require 'core-editor)
-;; Core Editor settings and keybindings
+
+;; Set editor settings and keybindings from `core-editor'
 (all-settings)
 (use-all-keybindings)
 (backup-to-tmp)
+
 ;; User Interface Settings
 (require 'core-ui)
 
