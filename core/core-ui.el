@@ -4,10 +4,11 @@
 ;; 2020-03-10
 ;;
 ;; Description:
-;; The settings in this module configure with Emacs' user
-;; interface. The these can be altered by visiting
-;; core-custom.el
+;; Configure for Emacs' user interface. The theme and other
+;; core-group variables can be edited in core-custom.el
 ;;
+;; Code:
+
 ;; Frame Settings
 
 (defun remove-menu-bar ()
@@ -31,8 +32,8 @@
 
 ;; Theme
 (defun set-theme ()
-  (when my-theme
-    (load-theme my-theme t)))
+  (when core-theme
+    (load-theme core-theme t)))
 
 ;; Enable Settings
 (defun use-all-settings ()
@@ -45,4 +46,5 @@
 (use-all-settings)
 
 (provide 'core-ui)
+
 ;; core-ui.el ends here
