@@ -14,8 +14,11 @@
 
 (defvar core-packages
   '(ace-window
+    counsel
+    ivy
     smartparens
     projectile
+    swiper
     zenburn-theme)
   "Packages to be installed at launch.")
 
