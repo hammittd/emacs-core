@@ -15,7 +15,7 @@
   (interactive)
   (let (beg end)
     (if (region-active-p)
-	(setq beg (region-beginning) end (region-end))
+        (setq beg (region-beginning) end (region-end))
       (setq beg (line-beginning-position) end (line-end-position)))
     (comment-or-uncomment-region beg-end)))
 
@@ -44,7 +44,7 @@
 
 (defun auto-save-on ()
   (add-hook 'text-mode-hook #'auto-save-visited-mode)
-  (setq auto-save-timeout 1)
+  (setq auto-save-timeout 3)
   (add-hook 'auto-save-hook #'save-all-buffers))
 
 (defun delete-trailing-whitespace ()
@@ -56,12 +56,12 @@
 
 (defun offer-to-create-dirs-on-save ()
   (add-hook 'before-save-hook
-	    (lambda ()
-	      (when buffer-file-name
-		(let ((dir (file-name-directory buffer-file-name)))
-		  (when (and (not (file-exists-p dir))
-			     (y-or-n-p (format "Directory %s does not exist. Create it?" dir)))
-		    (make-directory dir t)))))))
+            (lambda ()
+              (when buffer-file-name
+                (let ((dir (file-name-directory buffer-file-name)))
+                  (when (and (not (file-exists-p dir))
+                             (y-or-n-p (format "Directory %s does not exist. Create it?" dir)))
+                    (make-directory dir t)))))))
 
 (defun overwrite-selection ()
   (delete-selection-mode t))
@@ -75,7 +75,7 @@
 
 (defun save-scripts-as-executable ()
   (add-hook 'after-save-hook
-	    'executable-make-buffer-file-executable-if-script-p))
+            'executable-make-buffer-file-executable-if-script-p))
 
 (defun shorten-yes-or-no ()
   (fset 'yes-or-no-p 'y-or-n-p))
@@ -142,7 +142,7 @@
 ;; Keybindings
 (defun bind-comment-uncomment-to-meta-semi ()
   (global-set-key (kbd "M-;")
-		  'comment-or-uncomment-region-or-line))
+                  'comment-or-uncomment-region-or-line))
 
 (defun bind-ibuffer-instead-of-buffer-menu ()
   (global-set-key (kbd "C-x C-b") 'ibuffer))
@@ -168,9 +168,9 @@ respectively."
 ;; Backup to /tmp directory
 (defun backup-to-tmp ()
   (setq backup-directory-alist
-	`((".*" . ,temporary-file-directory)))
+        `((".*" . ,temporary-file-directory)))
   (setq auto-save-file-name-transforms
-	`((".*" ,temporary-file-directory t))))
+        `((".*" ,temporary-file-directory t))))
 
 (provide 'core-editor)
 
