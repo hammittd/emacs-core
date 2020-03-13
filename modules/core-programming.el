@@ -12,7 +12,7 @@
   (smartparens-mode +1)
   (core-enable-whitespace))
 
-(setq core-prog-mode-hook 'core-prog-mode-defaults)
+(setq core-prog-mode-hook 'core-programming-mode-defaults)
 
 (add-hook 'prog-mode-hook (lambda ()
                             (run-hooks 'core-prog-mode-hook)))
