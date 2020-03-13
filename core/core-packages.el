@@ -49,6 +49,29 @@
 
 (core-install-packages)
 
+;; Packages for various modes:
+(defmacro core-auto-install (extension package mode)
+  "When a file with a certain EXTENSION is opened, install the PACKAGE
+  and open the file in MODE."
+  `(add-to-list 'auto-mode-alist
+                `(,extension . (lambda ()
+                                 (unless (package-installed-p ',package)
+                                   (package-install ',package))
+                                 (,mode)))))
+
+(defvar core-auto-install-alist
+  '(("\\.rs\\'" rust-mode rust-mode)
+    ("\\.graphql\\'" graphql-mode graphql-mode)))
+
+(mapc
+ (lambda (entry)
+   (let ((extension (car entry))
+         (package (cadr entry))
+         (mode (cadr (cdr entry))))
+     (unless (package-installed-p package)
+       (core-auto-install extension package mode))))
+ core-auto-install-alist)
+
 (provide 'core-packages)
 
 ;; core-packages.el ends here
