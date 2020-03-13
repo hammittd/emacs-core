@@ -105,6 +105,18 @@
 (defun treat-camelcase-as-separate-words ()
   (add-hook 'prog-mode-hook 'subword-mode))
 
+(defun core-cleanup-whitespace ()
+  "Invoke `whitespace-cleanup' if `core-clean-whitespace-on-save is not nil."
+  (when core-clean-whitespace-on-save
+    (whitespace-cleanup)))
+
+(defun core-enable-whitespace ()
+  "Enable whitespace-mode if `core-whitespace' is not nil."
+  (when core-whitespace
+    ;; clean up whitespace!
+    (add-hook 'before-save-hook 'core-cleanup-whitespace nil t)
+    (whitespace-mode +1)))
+
 ;; Use all the settings:
 (defun all-settings ()
   (activate-ivy-mode)

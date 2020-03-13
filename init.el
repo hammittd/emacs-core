@@ -15,6 +15,11 @@
   "Directory for Customize UI settings file.")
 (defvar modules-dir (expand-file-name "modules" root-dir)
   "Secondary modules directory.")
+(defvar personal-dir (expand-file-name "personal" root-dir)
+  "Director for storing modules with personal settings. e.g.,
+  choosing which modes to load via `core-modules-to-load'.")
+(defvar core-modules-to-load-file (expand-file-name "core-modules.el" personal-dir)
+  "Add desired modules to load to this file.")
 (defvar core-savefiles-dir (expand-file-name "autosaves" root-dir)
   "Directory for all save files and history files.")
 (unless (file-exists-p core-savefiles-dir)
@@ -40,6 +45,9 @@
 
 ;; User Interface Settings
 (require 'core-ui)
+(if (file-exists-p core-modules-to-load-file)
+    (progn
+      (load core-modules-to-load-file)))
 
 ;; Set custom-file
 (setq custom-file (expand-file-name "emacs-custom.el" custom-dir))

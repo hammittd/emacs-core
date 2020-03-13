@@ -17,6 +17,17 @@
   :type 'symbol
   :group 'core)
 
+(defcustom core-whitespace t
+  "whitespace visibility."
+  :type 'boolean
+  :group 'core)
+
+(defcustom core-clean-whitespace-on-save t
+  "Clean whitespace from file before save.
+  core-whitespace must also be enabled."
+  :type 'boolean
+  :group 'core)
+
 (provide 'core-custom)
 
 ;; core-custom.el ends here
