@@ -10,6 +10,14 @@
 ;; Code:
 
 ;; Utilities
+
+(defun beginning-of-line-or-indentation ()
+  "move to beginning of line, or indentation"
+  (interactive)
+  (if (bolp)
+      (back-to-indentation)
+    (beginning-of-line)))
+
 (defun comment-or-uncomment-region-or-line ()
   "Comments or uncomments a region or the current line if there's no region."
   (interactive)
@@ -140,6 +148,10 @@
   (smartparens-config))
 
 ;; Keybindings
+
+(defun bind-beginning-of-line-or-indentation ()
+  (global-set-key (kbd "C-a") 'beginning-of-line-or-indentation))
+
 (defun bind-comment-uncomment-to-meta-semi ()
   (global-set-key (kbd "M-;")
                   'comment-or-uncomment-region-or-line))
@@ -160,6 +172,7 @@ respectively."
   (global-set-key (kbd "C-s") 'swiper-isearch))
 
 (defun use-all-keybindings ()
+  (bind-beginning-of-line-or-indentation)
   (bind-comment-uncomment-to-meta-semi)
   (bind-ibuffer-instead-of-buffer-menu)
   (bind-keys-to-change-text-size)
