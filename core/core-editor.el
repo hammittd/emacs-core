@@ -66,6 +66,9 @@
 (defun flash-instead-of-bell ()
   (setq visible-bell t))
 
+(defun highlight-indent-guides-settings ()
+  (setq highlight-indent-guides-method 'character))
+
 (defun offer-to-create-dirs-on-save ()
   (add-hook 'before-save-hook
             (lambda ()
@@ -132,11 +135,7 @@
     (setq whitespace-global-modes '(not org-mode))))
 
 (defun whitespace-settings ()
-  (setq whitespace-style '(face tabs tab-mark empty trailing lines-tail))
-  (setq whitespace-display-mappings '(
-    (tab-mark     ?\t    [?\u007C ?\t] [?\\ ?\t])
-  ))
-  (core-enable-whitespace))
+  (setq whitespace-style '(face tabs tab-mark empty trailing lines-tail)))
 
 ;; Use all the settings:
 (defun all-settings ()
@@ -153,6 +152,7 @@
   (always-highlight-code)
   (refresh-buffers-when-files-change)
   (show-matching-parens)
+  (highlight-indent-guides-settings)
   (flash-instead-of-bell)
   (tab-hooks)
   (tab-settings)
