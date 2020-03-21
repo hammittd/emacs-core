@@ -25,7 +25,15 @@
     (if (region-active-p)
         (setq beg (region-beginning) end (region-end))
       (setq beg (line-beginning-position) end (line-end-position)))
-    (comment-or-uncomment-region beg-end)))
+    (comment-or-uncomment-region beg end)))
+
+(defun disable-tabs () (setq indent-tabs-mode nil))
+
+(defun enable-tabs ()
+  (let ((custom-tab-width 2))
+    (local-set-key (kbd "TAB") 'tab-to-tab-stop)
+    (setq indent-tabs-mode t)
+    (setq tab-width custom-tab-width)))
 
 (defun reset-text-size ()
   (interactive)
@@ -55,10 +63,6 @@
   (setq auto-save-timeout 3)
   (add-hook 'auto-save-hook #'save-all-buffers))
 
-(defun delete-trailing-whitespace ()
-  "Call DELETE-TRAILING-WHITESPACE when a buffer is saved."
-  (add-hook 'before-save-hook 'delete-trailing-whitespace))
-
 (defun flash-instead-of-bell ()
   (setq visible-bell t))
 
@@ -73,6 +77,9 @@
 
 (defun overwrite-selection ()
   (delete-selection-mode t))
+
+(defun prog-mode-tab-hook ()
+  (add-hook 'prog-mode-hook 'enable-tabs))
 
 (defun quiet-startup ()
   (setq inhibit-startup-message t)
@@ -103,12 +110,12 @@
   (sp-use-paredit-bindings)
   (show-smartparens-global-mode +1))
 
-(defun spaces-not-tabs ()
-  (setq-default indent-tabs-mode nil)
-  (setq-default tab-width 8))
+;;(defun spaces-not-tabs ()
+;;   (setq-default indent-tabs-mode nil)
+;;   (setq-default tab-width 8))
 
-(defun tab-autocomplete ()
-  (setq tab-always-indent 'complete))
+;;(defun tab-autocomplete ()
+;;  (setq tab-always-indent 'complete))
 
 (defun treat-camelcase-as-separate-words ()
   (add-hook 'prog-mode-hook 'subword-mode))
@@ -119,17 +126,24 @@
     (whitespace-cleanup)))
 
 (defun core-enable-whitespace ()
-  "Enable whitespace-mode if `core-whitespace' is not nil."
+  "Enable whitespace-mode if `core-whitespace' is not nil. see core-custom.el"
   (when core-whitespace
     ;; clean up whitespace!
     (add-hook 'before-save-hook 'core-cleanup-whitespace nil t)
-    (whitespace-mode +1)))
+    (global-whitespace-mode t)
+    (setq whitespace-global-modes '(not org-mode))))
+
+(defun whitespace-settings ()
+  (setq whitespace-style '(face tabs tab-mark empty trailing lines-tail))
+  (setq whitespace-display-mappings '(
+    (tab-mark     ?\t    [?\u007C ?\t] [?\\ ?\t])
+  ))
+  (core-enable-whitespace))
 
 ;; Use all the settings:
 (defun all-settings ()
   (activate-ivy-mode)
   (auto-save-on)
-  (delete-trailing-whitespace)
   (treat-camelcase-as-separate-words)
   (save-scripts-as-executable)
   (offer-to-create-dirs-on-save)
@@ -142,10 +156,10 @@
   (refresh-buffers-when-files-change)
   (show-matching-parens)
   (flash-instead-of-bell)
+  (prog-mode-tab-hook)
   (set-default-line-length-to 80)
-  (spaces-not-tabs)
-  (tab-autocomplete)
-  (smartparens-config))
+  (smartparens-config)
+  (whitespace-settings))
 
 ;; Keybindings
 

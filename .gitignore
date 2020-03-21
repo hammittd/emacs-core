@@ -1,3 +1,4 @@
 elpa/
 autosaves/
-*emacs-custom.el
+custom/emacs-custom.el
+auto-save-list/
