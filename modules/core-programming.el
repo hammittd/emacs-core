@@ -9,6 +9,8 @@
 
 (defun core-programming-mode-defaults ()
   "Default settings hook."
+  (global-display-line-numbers-mode)
+  (highlight-indent-guides-mode +1)
   (smartparens-mode +1)
   (core-enable-whitespace))
 
