@@ -78,8 +78,10 @@
 (defun overwrite-selection ()
   (delete-selection-mode t))
 
-(defun prog-mode-tab-hook ()
-  (add-hook 'prog-mode-hook 'enable-tabs))
+(defun tab-hooks ()
+  (add-hook 'prog-mode-hook 'enable-tabs)
+	(add-hook 'lisp-mode-hook 'disable-tabs)
+	(add-hook 'emacs-lisp-mode-hook 'disable-tabs))
 
 (defun quiet-startup ()
   (setq inhibit-startup-message t)
@@ -109,13 +111,6 @@
   (setq sp-hybrid-kill-entire-symbol nil)
   (sp-use-paredit-bindings)
   (show-smartparens-global-mode +1))
-
-;;(defun spaces-not-tabs ()
-;;   (setq-default indent-tabs-mode nil)
-;;   (setq-default tab-width 8))
-
-;;(defun tab-autocomplete ()
-;;  (setq tab-always-indent 'complete))
 
 (defun treat-camelcase-as-separate-words ()
   (add-hook 'prog-mode-hook 'subword-mode))
@@ -156,7 +151,7 @@
   (refresh-buffers-when-files-change)
   (show-matching-parens)
   (flash-instead-of-bell)
-  (prog-mode-tab-hook)
+  (tab-hooks)
   (set-default-line-length-to 80)
   (smartparens-config)
   (whitespace-settings))
