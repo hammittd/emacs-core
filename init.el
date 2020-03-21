@@ -1,5 +1,5 @@
 ;; init.el -- initiation file
-;; 
+;;
 ;; Derek's Emacs init file
 ;; 2020-03-10
 ;;
