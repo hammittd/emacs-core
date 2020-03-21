@@ -60,7 +60,7 @@
 
 (defun auto-save-on ()
   (add-hook 'text-mode-hook #'auto-save-visited-mode)
-  (setq auto-save-timeout 3)
+  (setq auto-save-timeout 1)
   (add-hook 'auto-save-hook #'save-all-buffers))
 
 (defun flash-instead-of-bell ()
