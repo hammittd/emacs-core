@@ -3,7 +3,7 @@
 ;; Derek Hammitt
 ;;
 ;; Description:
-;; 
+;;
 ;; Code:
 
 (require 'core-programming)
