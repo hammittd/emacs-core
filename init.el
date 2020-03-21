@@ -45,6 +45,9 @@
 
 ;; User Interface Settings
 (require 'core-ui)
+
+;; Add modules from `modules-dir', to core-modules.el in `personal-dir'
+;; to load modules here:
 (if (file-exists-p core-modules-to-load-file)
     (progn
       (load core-modules-to-load-file)))
