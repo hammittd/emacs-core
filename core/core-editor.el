@@ -27,9 +27,12 @@
       (setq beg (line-beginning-position) end (line-end-position)))
     (comment-or-uncomment-region beg end)))
 
-(defun disable-tabs () (setq indent-tabs-mode nil))
+(defun disable-tabs ()
+  "Spaces instead of tabs"
+  (setq indent-tabs-mode nil))
 
 (defun enable-tabs ()
+  "tabs"
   (let ((custom-tab-width 2))
     (local-set-key (kbd "TAB") 'tab-to-tab-stop)
     (setq indent-tabs-mode t)
@@ -40,6 +43,8 @@
   (text-scale-set 0))
 
 (defun save-all-buffers ()
+  "save-buffer (\"C-x C-s\") saves the current buffer to its file.
+save-some-buffers (\"C-x s\") saves all buffers to their files."
   (interactive)
   (save-some-buffers t))
 
@@ -162,6 +167,9 @@
 
 ;; Keybindings
 
+(defun bind-ace-window ()
+  (global-set-key (kbd "M-o") 'ace-window))
+
 (defun bind-beginning-of-line-or-indentation ()
   (global-set-key (kbd "C-a") 'beginning-of-line-or-indentation))
 
@@ -185,6 +193,7 @@ respectively."
   (global-set-key (kbd "C-s") 'swiper-isearch))
 
 (defun use-all-keybindings ()
+  (bind-ace-window)
   (bind-beginning-of-line-or-indentation)
   (bind-comment-uncomment-to-meta-semi)
   (bind-ibuffer-instead-of-buffer-menu)
