@@ -7,7 +7,7 @@
 ;;
 ;; Code:
 (setq user-full-name "Derek Hammitt"
-      user-mail-address "derekrhammitt@gmail.com"
+      user-mail-address "derek.hammitt@trunkclub.com" 
 
       doom-scratch-buffer-major-mode 'org-mode
       doom-theme 'doom-nord
