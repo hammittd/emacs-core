@@ -28,8 +28,7 @@
       show-help-function nil)
 
 ;;; UI
-(setq doom-font (font-spec :family "monospace" :size 13 )
-      doom-variable-pitch-font (font-spec :family "sans" :size 13))
+(setq doom-font (font-spec :family "monospace" :size 13 ))
 
 (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
 
@@ -47,7 +46,7 @@
 (setq direnv-always-show-summary nil)
 
 ;; magit
-(setq magit-repository-directories '(("~/repos" . 2))
+(setq magit-repository-directories '(("~/repos/github.com" . 2))
       magit-save-repository-buffers nil
       magit-inhibit-save-previous-winconf t)
 
