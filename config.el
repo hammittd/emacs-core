@@ -54,7 +54,8 @@
 ;; org
 (setq org-directory "~/repos/org/"
       org-archive-location (concat org-directory "archive/%s::")
-      org-ellipsis " ▼ ")
+      org-ellipsis " ▼ "
+      org-agenda-files '("~/repos/org/work/todo.org"))
 (after! org
   (add-to-list 'org-modules 'org-habit t))
 
